@@ -4,11 +4,22 @@ import Link from 'next/link';
 import Image from 'next/image';
 import smashing from 'public/images/home/smashing.jpg';
 import summit from 'public/images/home/summit.jpg';
+import LinkedAuto1 from 'public/images/home/LinkedAuto1.png';
 import reactathon from 'public/images/home/reactathon.jpg';
 import ship from 'public/images/home/ship.jpg';
 import filming from 'public/images/home/filming.jpg';
 import meetups from 'public/images/home/meetups.jpg';
 import vercel from 'public/images/home/vercel.jpg';
+import react from 'public/images/home/react.svg';
+import node from 'public/images/home/node.svg';
+import expressjs from 'public/images/home/expressjs.svg';
+import mongodb from 'public/images/home/mongodb.svg';
+import ruby from 'public/images/home/ruby.svg';
+import rails from 'public/images/home/rails.svg';
+import electron from 'public/images/home/electron.svg';
+import tailwind from 'public/images/home/tailwind.svg';
+import bootstrap from 'public/images/home/bootstrap.svg';
+
 import avatar from 'app/avatar.jpg';
 import { PreloadResources } from 'app/preload';
 
@@ -17,7 +28,7 @@ function Badge(props) {
     <a
       {...props}
       target="_blank"
-      className="inline-flex items-center rounded border border-neutral-200 bg-neutral-50 p-1 text-sm leading-4 text-neutral-900 no-underline dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-100"
+      className="hover:animate-border inline-flex items-center rounded border border-neutral-200 bg-neutral-50 p-1 text-sm leading-4 text-neutral-900 no-underline dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-100"
     />
   );
 }
@@ -103,28 +114,14 @@ export default function Page() {
   return (
     <section>
       <PreloadResources />
-      <h1 className="mb-8 text-2xl font-medium tracking-tighter">
-        hey, I'm leerob 👋
+      <h1 className="text-2xl font-medium tracking-tighter">
+        Hey, I'm Shashank 👋
       </h1>
+      <p className="text-neutral-500 mb-8">Software Developer</p>
       <p className="prose prose-neutral dark:prose-invert">
-        {`I'm a frontend developer, optimist, and community builder. I currently `}
-        <Link href="/work">work</Link>
-        {` as the VP of Product at `}
-        <span className="not-prose">
-          <Badge href="https://vercel.com/home">
-            <svg
-              width="13"
-              height="11"
-              role="img"
-              aria-label="Vercel logo"
-              className="mr-1 inline-flex"
-            >
-              <use href="/sprite.svg#vercel" />
-            </svg>
-            Vercel
-          </Badge>
-        </span>
-        {`, where I help teach the `}
+        {`I currently work as the Lead Developer at `}
+        <Link href="/work">Fuzen</Link>
+        {`, where I help build an innovative no-code app builder.  I love working with `}
         <Badge href="https://nextjs.org">
           <img
             alt="Next.js logomark"
@@ -135,7 +132,7 @@ export default function Page() {
           />
           Next.js
         </Badge>
-        {` community, an open-source web framework built with `}
+        {` & `}
         <Badge href="https://react.dev">
           <svg
             width="14"
@@ -150,13 +147,16 @@ export default function Page() {
         </Badge>
         .
       </p>
+      <section className="mt-10">
+        <Skills />
+      </section>
       <div className="grid grid-cols-2 grid-rows-4 sm:grid-rows-3 sm:grid-cols-3 gap-4 my-8">
         <div className="relative h-40">
           <Image
             alt="Me speaking on stage at React Summit about the future of Next.js"
-            src={summit}
+            src={LinkedAuto1}
             fill
-            sizes="(max-width: 768px) 213px, 33vw"
+            // sizes="(max-width: 448px) 111px, 33vw"
             priority
             className="rounded-lg object-cover"
           />
@@ -166,7 +166,7 @@ export default function Page() {
             alt="Me standing on stage at Reactathon delivering the keynote"
             src={reactathon}
             fill
-            sizes="(max-width: 768px) 213px, 33vw"
+            sizes="(max-width: 768px) 213px, 12vw"
             priority
             className="rounded-lg object-cover object-top sm:object-center"
           />
@@ -339,3 +339,42 @@ export default function Page() {
     </section>
   );
 }
+
+const Skills = () => {
+  const skills = [
+    { name: 'Next.js', logo: '/next-logo.svg' },
+    { name: 'React', logo: react },
+    { name: 'Node Js', logo: node },
+    { name: 'Express', logo: expressjs },
+    { name: 'MongoDB', logo: mongodb },
+    { name: 'Ruby', logo: ruby },
+    { name: 'Ruby on Rails', logo: rails },
+    { name: 'Electron Js', logo: electron },
+    { name: 'Tailwind', logo: tailwind },
+    { name: 'Bootstrap', logo: bootstrap },
+  ];
+  return (
+    <>
+      <h1 className="mb-8 text-2xl font-medium tracking-tighter">Skills</h1>
+      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+        {skills.map((skill) => (
+          <Badge key={skill.name}>
+            <div className="flex flex-col items-center justify-center w-full text-lg md:text-2xl py-4 md:py-6">
+              <Image
+                alt={skill.name}
+                src={skill.logo}
+                className="!mr-1 w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16"
+                width="54"
+                height="54"
+                priority
+              />
+              <h2 className="text-lg font-medium tracking-tighter mt-4">
+                {skill.name}
+              </h2>
+            </div>
+          </Badge>
+        ))}
+      </div>
+    </>
+  );
+};
